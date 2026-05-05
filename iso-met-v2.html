@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ISO-MET AG – Bauabdichtungen Zürich</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --white:#ffffff;
+  --blue:#4e90b8;
+  --blue-mid:#3a7a9e;
+  --blue-dark:#2a5f7e;
+  --sky:#d8ecf7;
+  --sky-light:#eef6fc;
+  --grey:#6b7280;
+  --grey-light:#e2e8f0;
+  --grey-mid:#9ca3af;
+  --grey-dark:#374151;
+  --navy:#1a3347;
+  --navy-mid:#1e3c55;
+  --text:#2d3748;
+  --ease:cubic-bezier(.25,.46,.45,.94);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;line-height:1.7;font-size:15px}
+h1,h2,h3,h4,h5{font-family:'Raleway',sans-serif;line-height:1.2;color:var(--navy)}
+a{text-decoration:none}
+img{max-width:100%;height:auto}
+
+/* ── SVG ICON HELPER ── */
+svg{display:inline-block;vertical-align:middle;flex-shrink:0}
+
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity .8s ease,visibility .8s ease}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:'Raleway',sans-serif;font-size:2.4rem;font-weight:800;color:#fff;letter-spacing:.15em}
+.loader-logo span{color:var(--blue)}
+.loader-bar{width:200px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden}
+.loader-fill{height:100%;width:0;background:var(--blue);border-radius:2px;animation:loadFill 1.6s var(--ease) forwards}
+@keyframes loadFill{to{width:100%}}
+
+/* ── NAV ── */
+nav{background:var(--white);position:sticky;top:0;z-index:1000;border-bottom:1px solid var(--grey-light);transition:box-shadow .3s,border-color .3s}
+nav.scrolled{box-shadow:0 4px 24px rgba(26,51,71,.1);border-color:transparent}
+.nav-inner{max-width:1240px;margin:auto;padding:0 32px;height:72px;display:grid;grid-template-columns:200px 1fr 200px;align-items:center}
+.nav-logo{font-family:'Raleway',sans-serif;font-size:1.3rem;font-weight:800;color:var(--navy);letter-spacing:.06em}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;justify-content:center;gap:4px;list-style:none}
+.nav-links li{position:relative}
+.nav-links a{color:var(--grey-dark);font-family:'Raleway',sans-serif;font-size:13.5px;font-weight:600;padding:8px 16px;border-radius:8px;letter-spacing:.04em;display:block;position:relative;transition:color .25s}
+.nav-links a::after{content:'';position:absolute;bottom:4px;left:50%;right:50%;height:2px;background:var(--blue);border-radius:2px;transition:left .3s var(--ease),right .3s var(--ease)}
+.nav-links a:hover{color:var(--blue)}
+.nav-links a:hover::after{left:16px;right:16px}
+.nav-links .has-drop > a::before{content:'';display:inline-block;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-left:5px;vertical-align:1px;transition:transform .25s}
+.nav-links .has-drop:hover > a::before{transform:rotate(-135deg)}
+.dropdown{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--white);border:1px solid var(--grey-light);border-radius:12px;box-shadow:0 12px 40px rgba(26,51,71,.12);min-width:200px;padding:8px;list-style:none;opacity:0;visibility:hidden;transition:opacity .25s,transform .25s;transform:translateX(-50%) translateY(-6px)}
+.has-drop:hover .dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.dropdown a{color:var(--grey-dark);font-size:13px;padding:9px 14px;display:block;border-radius:8px;font-weight:500;transition:background .2s,color .2s}
+.dropdown a:hover{background:var(--sky-light);color:var(--blue)}
+.dropdown a::after{display:none}
+.nav-cta{display:flex;justify-content:flex-end}
+.nav-cta a{background:var(--blue);color:var(--white);font-family:'Raleway',sans-serif;font-size:13px;font-weight:700;padding:9px 22px;border-radius:8px;letter-spacing:.05em;transition:background .25s,transform .2s}
+.nav-cta a:hover{background:var(--navy);transform:translateY(-1px)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px}
+.burger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:.3s}
+.mobile-menu{display:none;position:fixed;inset:0;top:72px;background:var(--white);z-index:999;flex-direction:column;padding:1.5rem 24px;gap:4px;overflow-y:auto}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--grey-dark);font-family:'Raleway',sans-serif;font-size:1rem;font-weight:600;padding:12px 16px;border-radius:8px;transition:background .2s}
+.mobile-menu a:hover{background:var(--sky-light);color:var(--blue)}
+.mobile-menu .mob-sub{padding-left:28px;font-size:.9rem;font-weight:400}
+
+/* ── HERO ── */
+.hero{min-height:90vh;position:relative;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1800&q=80');background-size:cover;background-position:center;transform:scale(1.04);animation:heroZoom 10s ease forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(22,44,66,.88) 0%,rgba(22,44,66,.65) 50%,rgba(22,44,66,.4) 100%)}
+.hero-inner{max-width:1240px;margin:auto;padding:100px 32px;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-content{opacity:0;animation:fadeUp .8s .4s var(--ease) forwards}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(78,144,184,.18);border:1px solid rgba(78,144,184,.35);color:#9ecfe8;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2rem,4vw,3.4rem);font-weight:800;color:#fff;margin-bottom:1.25rem;line-height:1.1}
+.hero h1 em{color:#8ec8e8;font-style:normal}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.72);max-width:480px;margin-bottom:2rem;line-height:1.75}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:2.5rem}
+.btn-primary{background:var(--blue);color:#fff;padding:13px 28px;border-radius:8px;font-family:'Raleway',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;transition:background .25s,transform .2s;display:inline-block}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.38);color:#fff;padding:13px 28px;border-radius:8px;font-family:'Raleway',sans-serif;font-weight:600;font-size:14px;letter-spacing:.05em;transition:background .25s,border-color .25s;display:inline-block}
+.btn-ghost:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+.hero-stats{display:flex;gap:32px;padding-top:2rem;border-top:1px solid rgba(255,255,255,.12)}
+.hero-stat .num{font-family:'Raleway',sans-serif;font-size:2.2rem;font-weight:800;color:#fff;line-height:1}
+.hero-stat .lbl{font-size:11.5px;color:rgba(255,255,255,.5);letter-spacing:.07em;margin-top:4px}
+.hero-image-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;backdrop-filter:blur(12px);opacity:0;animation:fadeLeft .8s .7s var(--ease) forwards}
+.hero-img-main{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:brightness(.9)}
+.hero-img-bar{padding:16px 20px;display:flex;align-items:center;gap:14px}
+.hero-img-bar-icon{width:38px;height:38px;background:rgba(78,144,184,.25);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hero-img-bar .t{font-family:'Raleway',sans-serif;font-weight:600;font-size:13.5px;color:#fff}
+.hero-img-bar .s{font-size:12px;color:rgba(255,255,255,.5);margin-top:1px}
+.hero-badge{position:absolute;top:20px;right:20px;background:var(--blue);color:#fff;border-radius:12px;padding:12px 16px;font-family:'Raleway',sans-serif;text-align:center;font-weight:700;box-shadow:0 8px 24px rgba(78,144,184,.4)}
+.hero-badge .n{font-size:1.8rem;display:block;line-height:1}
+.hero-badge .l{font-size:10px;opacity:.8;letter-spacing:.06em}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
+
+/* ── TRUST BAR ── */
+.trust-bar{background:var(--sky-light);border-top:1px solid var(--grey-light);border-bottom:1px solid var(--grey-light);padding:18px 32px}
+.trust-inner{max-width:1240px;margin:auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:28px}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--navy);font-family:'Raleway',sans-serif}
+.trust-item svg{color:var(--blue)}
+
+/* ── SECTION ── */
+.section{padding:90px 32px}
+.section-inner{max-width:1240px;margin:auto}
+.section-header{text-align:center;margin-bottom:64px}
+.section-tag{display:inline-block;background:var(--sky);color:var(--blue-dark);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:1rem}
+.section-title{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:var(--navy);margin-bottom:.75rem}
+.section-sub{color:var(--grey);max-width:520px;margin:auto;font-size:15px}
+.divider{width:48px;height:3px;background:var(--blue);border-radius:2px;margin:16px auto 0}
+
+/* ── SHOWCASE (animated) ── */
+.showcase{background:var(--navy);overflow:hidden;position:relative;padding:90px 32px}
+.showcase::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(78,144,184,.12) 1px,transparent 1px);background-size:36px 36px}
+.showcase-inner{max-width:1240px;margin:auto;position:relative;z-index:1}
+.showcase-header{text-align:center;margin-bottom:56px}
+.showcase-header .section-tag{background:rgba(78,144,184,.2);color:#9ecfe8}
+.showcase-header .section-title{color:#fff}
+.showcase-header .section-sub{color:rgba(255,255,255,.6)}
+.showcase-tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-bottom:48px}
+.stab{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.65);font-family:'Raleway',sans-serif;font-size:13px;font-weight:600;padding:9px 20px;border-radius:8px;cursor:pointer;transition:all .25s;letter-spacing:.04em;display:flex;align-items:center;gap:8px}
+.stab svg{opacity:.7;transition:opacity .25s}
+.stab:hover,.stab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 4px 16px rgba(78,144,184,.35)}
+.stab:hover svg,.stab.active svg{opacity:1}
+.showcase-content{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;min-height:320px}
+.showcase-panel{display:none;animation:panelIn .5s var(--ease) both}
+.showcase-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@keyframes panelIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.showcase-text .sp-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(78,144,184,.2);color:#9ecfe8;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:1rem}
+.showcase-text h3{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:800;color:#fff;margin-bottom:1rem}
+.showcase-text p{color:rgba(255,255,255,.65);font-size:14.5px;line-height:1.75;margin-bottom:1.5rem}
+.sp-features{display:flex;flex-direction:column;gap:10px}
+.sp-feature{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.8);font-size:13.5px}
+.sp-feature svg{color:var(--blue);flex-shrink:0}
+.showcase-visual{border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.1);aspect-ratio:4/3;object-fit:cover}
+.progress-bar{width:100%;height:2px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:32px;overflow:hidden}
+.progress-fill{height:100%;background:var(--blue);border-radius:2px;animation:progressAnim 5s linear infinite}
+@keyframes progressAnim{from{width:0}to{width:100%}}
+
+/* ── SERVICES GRID ── */
+.services{background:var(--white)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.service-card{background:var(--white);border:1.5px solid var(--grey-light);border-radius:16px;padding:32px 28px;position:relative;overflow:hidden;transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;cursor:default}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.service-card:hover{transform:translateY(-8px);border-color:rgba(78,144,184,.4);box-shadow:0 20px 50px rgba(26,51,71,.1)}
+.service-card:hover::before{transform:scaleX(1)}
+.card-icon-wrap{width:54px;height:54px;background:var(--sky);border-radius:13px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:background .3s,transform .3s;color:var(--blue)}
+.service-card:hover .card-icon-wrap{background:var(--blue);color:#fff;transform:scale(1.08)}
+.card-num{position:absolute;top:20px;right:24px;font-family:'Raleway',sans-serif;font-size:2.8rem;font-weight:800;color:var(--grey-light);line-height:1;transition:color .3s}
+.service-card:hover .card-num{color:var(--sky)}
+.card-title{font-family:'Raleway',sans-serif;font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:10px}
+.card-desc{font-size:13.5px;color:var(--grey);line-height:1.7;margin-bottom:20px}
+.card-link{display:inline-flex;align-items:center;gap:6px;font-family:'Raleway',sans-serif;font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.04em;transition:gap .2s}
+.card-link:hover{gap:10px}
+
+/* ── ABOUT ── */
+.about{background:var(--sky-light)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-img-wrap{position:relative}
+.about-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:20px;display:block}
+.about-float{position:absolute;bottom:-20px;right:-20px;background:var(--white);border:1px solid var(--grey-light);border-radius:14px;padding:18px 22px;box-shadow:0 12px 32px rgba(26,51,71,.12);display:flex;align-items:center;gap:14px}
+.about-float-icon{width:44px;height:44px;background:var(--sky);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--blue);flex-shrink:0}
+.about-float-text .t{font-family:'Raleway',sans-serif;font-weight:700;font-size:13.5px;color:var(--navy)}
+.about-float-text .s{font-size:12px;color:var(--grey);margin-top:2px}
+.about-years{position:absolute;top:-16px;left:-16px;background:var(--blue);color:#fff;border-radius:14px;padding:18px 22px;text-align:center;font-family:'Raleway',sans-serif;box-shadow:0 8px 24px rgba(78,144,184,.35)}
+.about-years .n{font-size:2rem;font-weight:800;display:block;line-height:1}
+.about-years .l{font-size:11px;opacity:.85;letter-spacing:.06em}
+.about-content .label{display:inline-block;background:var(--sky);color:var(--blue-dark);font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:1rem}
+.about-content h2{font-size:clamp(1.7rem,3vw,2.4rem);font-weight:800;margin-bottom:1rem}
+.about-content p{color:var(--grey);font-size:15px;margin-bottom:1.2rem;line-height:1.75}
+.pillars{display:flex;flex-direction:column;gap:14px;margin-top:1.8rem}
+.pillar{display:flex;align-items:flex-start;gap:14px;background:var(--white);border:1px solid var(--grey-light);border-radius:12px;padding:16px 18px;transition:border-color .3s,transform .3s}
+.pillar:hover{border-color:rgba(78,144,184,.4);transform:translateX(4px)}
+.pillar-num{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Raleway',sans-serif;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
+.pillar-text .pt{font-family:'Raleway',sans-serif;font-weight:600;font-size:14px;color:var(--navy)}
+.pillar-text .ps{font-size:13px;color:var(--grey);margin-top:2px}
+
+/* ── PROCESS ── */
+.process{background:var(--white)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.process-grid::before{content:'';position:absolute;top:36px;left:10%;right:10%;height:1.5px;background:var(--grey-light);z-index:0}
+.step-item{text-align:center;padding:16px;position:relative;z-index:1}
+.step-bubble{width:72px;height:72px;background:var(--white);border:2px solid var(--grey-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;transition:background .35s,border-color .35s,transform .35s;color:var(--grey-mid)}
+.step-item:hover .step-bubble{background:var(--blue);border-color:var(--blue);color:#fff;transform:scale(1.1)}
+.step-title{font-family:'Raleway',sans-serif;font-size:14.5px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.step-desc{font-size:13px;color:var(--grey);line-height:1.6}
+
+/* ── PARTNERS ── */
+.partners{background:var(--sky-light)}
+.partners-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+.partner-card{background:var(--white);border:1.5px solid var(--grey-light);border-radius:14px;padding:28px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:transform .3s,border-color .3s,box-shadow .3s;text-decoration:none}
+.partner-card:hover{transform:translateY(-6px);border-color:rgba(78,144,184,.4);box-shadow:0 12px 32px rgba(26,51,71,.1)}
+.partner-logo-box{width:100%;height:52px;display:flex;align-items:center;justify-content:center}
+.partner-logo-box img{max-height:52px;max-width:140px;width:auto;object-fit:contain;filter:grayscale(60%);transition:filter .3s}
+.partner-card:hover .partner-logo-box img{filter:grayscale(0)}
+.partner-name{font-family:'Raleway',sans-serif;font-size:12px;font-weight:600;color:var(--grey);letter-spacing:.06em;text-align:center}
+
+/* ── CTA BANNER ── */
+.cta-banner{background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:80px 32px;text-align:center;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(78,144,184,.1) 1px,transparent 1px);background-size:36px 36px}
+.cta-banner-inner{position:relative;z-index:1;max-width:660px;margin:auto}
+.cta-banner h2{font-size:clamp(1.8rem,3vw,2.5rem);color:#fff;font-weight:800;margin-bottom:1rem}
+.cta-banner p{color:rgba(255,255,255,.7);font-size:15px;margin-bottom:2rem}
+.cta-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.btn-white{background:var(--white);color:var(--navy);padding:13px 28px;border-radius:8px;font-family:'Raleway',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;transition:background .25s,transform .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-white:hover{background:var(--sky);transform:translateY(-2px)}
+
+/* ── CONTACT ── */
+.contact{background:var(--white)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:start}
+.contact-info h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:1rem}
+.contact-info>p{color:var(--grey);font-size:15px;margin-bottom:2rem;line-height:1.75}
+.contact-items{display:flex;flex-direction:column;gap:20px;margin-bottom:2rem}
+.contact-item{display:flex;align-items:flex-start;gap:14px}
+.ci-icon{width:44px;height:44px;flex-shrink:0;background:var(--sky-light);border:1.5px solid var(--grey-light);border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--blue);transition:background .25s,border-color .25s}
+.contact-item:hover .ci-icon{background:var(--blue);border-color:var(--blue);color:#fff}
+.ci-label{font-size:11.5px;color:var(--grey-mid);font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+.ci-value{font-family:'Raleway',sans-serif;font-size:14.5px;font-weight:600;color:var(--navy);margin-top:2px}
+.ci-value a{color:var(--navy);text-decoration:none;transition:color .2s}
+.ci-value a:hover{color:var(--blue)}
+.map-wrap{border-radius:16px;overflow:hidden;border:1.5px solid var(--grey-light);aspect-ratio:16/9;width:100%}
+.map-wrap iframe{width:100%;height:100%;border:0;display:block}
+.contact-form-wrap{background:var(--sky-light);border:1.5px solid var(--grey-light);border-radius:18px;padding:36px 32px}
+.contact-form-wrap h3{font-family:'Raleway',sans-serif;font-size:1.35rem;font-weight:700;color:var(--navy);margin-bottom:22px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.form-group label{font-size:12px;font-weight:700;color:var(--grey-dark);letter-spacing:.06em;text-transform:uppercase}
+.form-group input,.form-group textarea,.form-group select{background:var(--white);border:1.5px solid var(--grey-light);border-radius:8px;padding:11px 14px;font-family:'Open Sans',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .25s,box-shadow .25s;width:100%}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(78,144,184,.12)}
+.form-group textarea{resize:vertical;min-height:110px}
+.form-submit{width:100%;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:13px;font-family:'Raleway',sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.06em;transition:background .25s,transform .2s;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:8px}
+.form-submit:hover{background:var(--navy);transform:translateY(-2px)}
+.form-success{display:none;text-align:center;padding:2.5rem 1rem;color:var(--navy);font-family:'Raleway',sans-serif}
+.form-success svg{color:var(--blue);margin-bottom:12px}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);color:rgba(255,255,255,.6);padding:64px 32px 28px}
+.footer-inner{max-width:1240px;margin:auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:52px}
+.footer-brand .logo{font-family:'Raleway',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;letter-spacing:.06em;margin-bottom:14px;display:block}
+.footer-brand .logo span{color:var(--blue)}
+.footer-brand p{font-size:13.5px;line-height:1.75;max-width:260px}
+.footer-col h4{font-family:'Raleway',sans-serif;font-size:12px;font-weight:700;color:#fff;letter-spacing:.12em;text-transform:uppercase;margin-bottom:18px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-size:13.5px;color:rgba(255,255,255,.55);text-decoration:none;transition:color .25s;display:flex;align-items:center;gap:6px}
+.footer-col ul li a:hover{color:var(--blue)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;font-size:12.5px}
+.footer-bottom-links{display:flex;gap:20px}
+.footer-bottom a{color:rgba(255,255,255,.45);text-decoration:none;transition:color .25s;cursor:pointer}
+.footer-bottom a:hover{color:#fff}
+
+/* ── MODALS ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,20,32,.65);z-index:9000;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--white);border-radius:20px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 32px 80px rgba(10,20,32,.3);animation:modalIn .35s var(--ease-out)}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.modal-head{position:sticky;top:0;background:var(--white);border-bottom:1px solid var(--grey-light);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;border-radius:20px 20px 0 0;z-index:1}
+.modal-head h2{font-size:1.2rem;font-weight:700;color:var(--navy)}
+.modal-close{background:var(--sky-light);border:none;color:var(--grey);width:34px;height:34px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+.modal-close:hover{background:var(--blue);color:#fff}
+.modal-body{padding:28px}
+.modal-body h3{font-family:'Raleway',sans-serif;font-size:1rem;font-weight:700;color:var(--navy);margin:1.5rem 0 .5rem}
+.modal-body h3:first-child{margin-top:0}
+.modal-body p,.modal-body li{font-size:14px;color:var(--grey);line-height:1.75;margin-bottom:.6rem}
+.modal-body ul{padding-left:1.4rem}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+.reveal-delay-5{transition-delay:.5s}
+.reveal-delay-6{transition-delay:.6s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .nav-inner{grid-template-columns:auto 1fr auto}
+  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .hero-image-card{max-width:480px;margin:auto}
+  .about-grid{grid-template-columns:1fr}
+  .about-img-wrap{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .process-grid::before{display:none}
+  .showcase-panel.active{grid-template-columns:1fr}
+  .showcase-visual{display:none}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .burger{display:flex}
+  .nav-inner{grid-template-columns:1fr auto}
+  .footer-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-inner{padding:70px 0}
+  .hero-stats{flex-wrap:wrap;gap:20px}
+  .hero-btns{flex-direction:column}
+  .btn-primary,.btn-ghost{text-align:center}
+  .partners-grid{grid-template-columns:repeat(2,1fr)}
+  .process-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .section{padding:60px 20px}
+  .partners-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">ISO<span>-</span>MET AG</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a href="#startseite" class="nav-logo">ISO<span>-MET</span> AG</a>
+    <ul class="nav-links">
+      <li><a href="#startseite">Startseite</a></li>
+      <li class="has-drop">
+        <a href="#dienstleistungen">Dienstleistungen</a>
+        <ul class="dropdown">
+          <li><a href="#dienstleistungen">Fugenabdichtungen</a></li>
+          <li><a href="#dienstleistungen">Brandabschottung</a></li>
+          <li><a href="#dienstleistungen">Beton-Injektionen</a></li>
+          <li><a href="#dienstleistungen">Combi-Flex</a></li>
+          <li><a href="#dienstleistungen">Dampf- & Wasserfolien</a></li>
+        </ul>
+      </li>
+      <li><a href="#ueber-uns">Über uns</a></li>
+      <li><a href="#partner">Partner</a></li>
+      <li><a href="#referenzen">Referenzen</a></li>
+    </ul>
+    <div class="nav-cta"><a href="#kontakt">Kontakt</a></div>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menü">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#startseite" onclick="closeMenu()">Startseite</a>
+  <a href="#dienstleistungen" onclick="closeMenu()">Dienstleistungen</a>
+  <a href="#ueber-uns" onclick="closeMenu()">Über uns</a>
+  <a href="#partner" onclick="closeMenu()">Partner</a>
+  <a href="#referenzen" onclick="closeMenu()">Referenzen</a>
+  <a href="#kontakt" onclick="closeMenu()">Kontakt</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="startseite">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Bauabdichtungen · Schweiz
+      </div>
+      <h1>Ihr Partner für<br><em>professionelle<br>Bauabdichtungen</em></h1>
+      <p class="hero-sub">ISO-MET AG steht für kompetente Bauabdichtungen, nachhaltige Schimmelbekämpfung und zuverlässigen Bautenschutz – seit Jahren bewährt in der ganzen Schweiz.</p>
+      <div class="hero-btns">
+        <a href="#kontakt" class="btn-primary">Jetzt Kontakt aufnehmen</a>
+        <a href="#dienstleistungen" class="btn-ghost">Unsere Dienstleistungen</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num" data-count="10">0</div><div class="lbl">Jahre Erfahrung</div></div>
+        <div class="hero-stat"><div class="num" data-count="500">0</div><div class="lbl">Projekte</div></div>
+        <div class="hero-stat"><div class="num" data-count="100">0</div><div class="lbl">% Qualität</div></div>
+      </div>
+    </div>
+    <div class="hero-image-card">
+      <div style="position:relative">
+        <img class="hero-img-main" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Bauabdichtung Arbeiten" loading="lazy"/>
+        <div class="hero-badge">
+          <span class="n">VKF</span>
+          <span class="l">Zertifiziert</span>
+        </div>
+      </div>
+      <div class="hero-img-bar">
+        <div class="hero-img-bar-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9ecfe8" stroke-width="2.2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622C17.176 19.29 21 14.591 21 9c0-.744-.073-1.47-.208-2.175z"/></svg>
+        </div>
+        <div>
+          <div class="t">Professionelle Bauabdichtung</div>
+          <div class="s">Nürensdorf · Zürich · Schweiz</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622C17.176 19.29 21 14.591 21 9c0-.744-.073-1.47-.208-2.175z"/></svg>
+      VKF-Zertifiziert
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+      DIN-Normgerecht
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      Schnelle Reaktionszeit
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Zürich & Umgebung
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Kostenlose Erstberatung
+    </div>
+  </div>
+</div>
+
+<!-- SHOWCASE (Animated "What we do") -->
+<section class="showcase" id="was-wir-tun">
+  <div class="showcase-inner">
+    <div class="showcase-header">
+      <div class="section-tag">Was wir tun</div>
+      <h2 class="section-title">Unsere Kernkompetenzen</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,.6)">Entdecken Sie unsere spezialisierten Leistungen – präzise, normgerecht und nachhaltig.</p>
+    </div>
+    <div class="showcase-tabs">
+      <button class="stab active" onclick="switchTab(0)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Fugenabdichtungen
+      </button>
+      <button class="stab" onclick="switchTab(1)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+        Brandabschottung
+      </button>
+      <button class="stab" onclick="switchTab(2)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        Beton-Injektionen
+      </button>
+      <button class="stab" onclick="switchTab(3)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        Combi-Flex
+      </button>
+      <button class="stab" onclick="switchTab(4)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        Dampf- & Wasserfolien
+      </button>
+    </div>
+
+    <!-- Panel 0 -->
+    <div class="showcase-panel active" id="panel-0">
+      <div class="showcase-text">
+        <div class="sp-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          Dienstleistung 01
+        </div>
+        <h3>Fugenabdichtungen</h3>
+        <p>Ob Neubau oder Renovierung – wir haben für alle Arten von Fugen die perfekte Lösung. Fugenabdichtungen verhindern das Eindringen von Wasser, Wasserdampf oder Luft im Bereich einer Fuge.</p>
+        <div class="sp-features">
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Neubau & Renovierung</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Alle Fugenarten</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Wasserabdichtung & Dampfsperre</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Langfristige Haltbarkeit</div>
+        </div>
+      </div>
+      <img class="showcase-visual" src="https://images.unsplash.com/photo-1590725140246-20acddc1ec6d?auto=format&fit=crop&w=700&q=80" alt="Fugenabdichtungen" loading="lazy"/>
+    </div>
+
+    <!-- Panel 1 -->
+    <div class="showcase-panel" id="panel-1">
+      <div class="showcase-text">
+        <div class="sp-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+          Dienstleistung 02
+        </div>
+        <h3>Brandabschottung</h3>
+        <p>Baulicher Brandschutz nach höchsten Standards. VKF-zertifizierte Lösungen für Fugensysteme, Kompensatoren, Brandschutzbeschichtungen und Fluchtleitsysteme.</p>
+        <div class="sp-features">
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> VKF-Zulassung</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Brandschutzbeschichtungen</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Rauch- & Brandschutzvorhänge</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Fluchtleitsysteme</div>
+        </div>
+      </div>
+      <img class="showcase-visual" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=700&q=80" alt="Brandabschottung" loading="lazy"/>
+    </div>
+
+    <!-- Panel 2 -->
+    <div class="showcase-panel" id="panel-2">
+      <div class="showcase-text">
+        <div class="sp-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+          Dienstleistung 03
+        </div>
+        <h3>Beton-Injektionen</h3>
+        <p>Nachhaltige Abdichtung von Betonbauwerken durch professionelle Injektionstechnik. Zuverlässige Sanierung von Feuchtigkeitsschäden im Keller- und Untergeschossbereich.</p>
+        <div class="sp-features">
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Druckinjektionsverfahren</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Riss- & Hohlraumverfüllung</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Dauerhafter Feuchtigkeitsschutz</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Minimale Bauunterbrechung</div>
+        </div>
+      </div>
+      <img class="showcase-visual" src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&w=700&q=80" alt="Beton Injektionen" loading="lazy"/>
+    </div>
+
+    <!-- Panel 3 -->
+    <div class="showcase-panel" id="panel-3">
+      <div class="showcase-text">
+        <div class="sp-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          Dienstleistung 04
+        </div>
+        <h3>Combi-Flex</h3>
+        <p>Das flexible Abdichtungssystem für anspruchsvolle Bauprojekte. Combi-Flex bietet maximale Sicherheit bei dynamischen Belastungen und komplexen Geometrien.</p>
+        <div class="sp-features">
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Flexible Abdichtungsebene</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Hochbelastbare Verbindungen</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Innen- & Aussenanwendung</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Bewegungsausgleich</div>
+        </div>
+      </div>
+      <img class="showcase-visual" src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=700&q=80" alt="Combi-Flex" loading="lazy"/>
+    </div>
+
+    <!-- Panel 4 -->
+    <div class="showcase-panel" id="panel-4">
+      <div class="showcase-text">
+        <div class="sp-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          Dienstleistung 05
+        </div>
+        <h3>Dampf- und Wasserfolien</h3>
+        <p>Hochwertige Dampfsperren und Wasserfolien für Wohn- und Gewerbebauten. Effektiver Schutz vor Kondensation, Feuchtigkeitsschäden und Schimmelbildung.</p>
+        <div class="sp-features">
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Dampfbremsfolien</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Horizontale Abdichtungen</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Keller- & Dachfolien</div>
+          <div class="sp-feature"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Schimmelprävention</div>
+        </div>
+      </div>
+      <img class="showcase-visual" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=700&q=80" alt="Dampf und Wasserfolien" loading="lazy"/>
+    </div>
+
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+</section>
+
+<!-- SERVICES CARDS -->
+<section class="section services" id="dienstleistungen">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Dienstleistungen</div>
+      <h2 class="section-title">Alle Leistungen im Überblick</h2>
+      <p class="section-sub">Professionelle Lösungen für jeden Abdichtungsbedarf – zuverlässig, normgerecht und nachhaltig.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="card-num">01</div>
+        <div class="card-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="card-title">Fugenabdichtungen</div>
+        <p class="card-desc">Ob Neubau oder Renovierung – wir bieten für alle Fugentypen die ideale Abdichtungslösung gegen Wasser, Dampf und Luft.</p>
+        <a href="#kontakt" class="card-link">Anfrage stellen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="card-num">02</div>
+        <div class="card-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+        </div>
+        <div class="card-title">Brandabschottung</div>
+        <p class="card-desc">Baulicher Brandschutz nach VKF-Norm: Fugensysteme, Brandschutzbeschichtungen, Sonderkonstruktionen und Fluchtleitsysteme.</p>
+        <a href="#kontakt" class="card-link">Anfrage stellen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="card-num">03</div>
+        <div class="card-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+        </div>
+        <div class="card-title">Beton-Injektionen</div>
+        <p class="card-desc">Nachhaltige Abdichtung und Sanierung von Betonbauwerken durch professionelle Injektionstechnik – bei minimalem Aufwand.</p>
+        <a href="#kontakt" class="card-link">Anfrage stellen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="card-num">04</div>
+        <div class="card-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        </div>
+        <div class="card-title">Combi-Flex</div>
+        <p class="card-desc">Flexibles Abdichtungssystem für anspruchsvolle Bauprojekte mit dynamischen Belastungen und komplexen geometrischen Anforderungen.</p>
+        <a href="#kontakt" class="card-link">Anfrage stellen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="card-num">05</div>
+        <div class="card-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </div>
+        <div class="card-title">Dampf- & Wasserfolien</div>
+        <p class="card-desc">Hochwertige Dampfsperren und Wasserfolien zum Schutz vor Kondensation, Feuchtigkeitsschäden und Schimmelbildung in jedem Bauteil.</p>
+        <a href="#kontakt" class="card-link">Anfrage stellen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="card-num">06</div>
+        <div class="card-icon-wrap">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="card-title">Schimmelbekämpfung</div>
+        <p class="card-desc">Fundierte Schadensanalyse und nachhaltige Beseitigung von Schimmelschäden in Wohn- und Kellerräumen mit langfristigem Schutz.</p>
+        <a href="#kontakt" class="card-link">Anfrage stellen <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="ueber-uns">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img class="about-img" src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80" alt="ISO-MET AG Team" loading="lazy"/>
+        <div class="about-years">
+          <span class="n">10+</span>
+          <span class="l">Jahre Erfahrung</span>
+        </div>
+        <div class="about-float">
+          <div class="about-float-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622C17.176 19.29 21 14.591 21 9c0-.744-.073-1.47-.208-2.175z"/></svg>
+          </div>
+          <div class="about-float-text">
+            <div class="t">VKF Zertifiziert</div>
+            <div class="s">Zugelassener Fachbetrieb</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content reveal reveal-delay-2">
+        <div class="label">Über uns</div>
+        <h2>ISO-MET Bauabdichtungen AG</h2>
+        <p>Ihr zuverlässiger Partner für Bauabdichtungen, bei der Beseitigung von Schimmelschäden und Feuchtigkeit. Wir sind als Fachbetrieb im Bereich Bautenschutz auf die Sanierung von Feuchtigkeitsschäden und die nachhaltige Bekämpfung von Schimmel spezialisiert.</p>
+        <p>Unser bewährtes Bautenschutzkonzept gewährleistet eine zuverlässige und planmässige Vorgehensweise zum Schutz Ihrer Immobilie – mit vollständiger Dokumentation aller Arbeitsgänge nach DIN und anerkannten Richtlinien.</p>
+        <div class="pillars">
+          <div class="pillar">
+            <div class="pillar-num">1</div>
+            <div class="pillar-text">
+              <div class="pt">Fundierte Schadensanalyse</div>
+              <div class="ps">Genaue Ermittlung der Schadensursache vor jedem Eingriff</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">2</div>
+            <div class="pillar-text">
+              <div class="pt">Hochwertige Materialien</div>
+              <div class="ps">Ausschliesslich bewährte Produkte renommierter Hersteller</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">3</div>
+            <div class="pillar-text">
+              <div class="pt">Fachgerechte Ausführung</div>
+              <div class="ps">Nach DIN-Richtlinien mit vollständiger Dokumentation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process" id="referenzen">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Unser Vorgehen</div>
+      <h2 class="section-title">So arbeiten wir</h2>
+      <p class="section-sub">Transparent, strukturiert und auf Ihr Objekt abgestimmt – von der ersten Analyse bis zur Fertigstellung.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="process-grid">
+      <div class="step-item reveal reveal-delay-1">
+        <div class="step-bubble">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.48 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l1.42-1.42a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="step-title">Kontaktaufnahme</div>
+        <p class="step-desc">Sie erreichen uns per Telefon, E-Mail oder Kontaktformular. Wir melden uns umgehend zurück.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-2">
+        <div class="step-bubble">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <div class="step-title">Kostenlose Analyse</div>
+        <p class="step-desc">Unser Experte besichtigt Ihr Objekt und erstellt eine fundierte Schadensanalyse – kostenlos und unverbindlich.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-3">
+        <div class="step-bubble">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="step-title">Massgeschneidertes Angebot</div>
+        <p class="step-desc">Auf Basis der Analyse erhalten Sie ein transparentes, individuelles Angebot.</p>
+      </div>
+      <div class="step-item reveal reveal-delay-4">
+        <div class="step-bubble">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="step-title">Fachgerechte Ausführung</div>
+        <p class="step-desc">Unsere Spezialisten führen alle Arbeiten nach DIN-Norm aus – mit vollständiger Dokumentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section partners" id="partner">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Partner</div>
+      <h2 class="section-title">Unsere Partner</h2>
+      <p class="section-sub">Wir arbeiten mit renommierten Unternehmen der Schweizer Bauwirtschaft zusammen.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="partners-grid">
+      <a href="https://www.rothgruppe.ch" target="_blank" rel="noopener" class="partner-card reveal reveal-delay-1">
+        <div class="partner-logo-box">
+          <img src="https://iso-met.ch/wp-content/uploads/2021/06/roth-gruppe-300x78.png" alt="Roth Gruppe" loading="lazy"/>
+        </div>
+        <div class="partner-name">rothgruppe.ch</div>
+      </a>
+      <a href="https://hrs.ch/" target="_blank" rel="noopener" class="partner-card reveal reveal-delay-2">
+        <div class="partner-logo-box">
+          <img src="https://iso-met.ch/wp-content/uploads/2021/06/hrs-300x109.png" alt="HRS" loading="lazy"/>
+        </div>
+        <div class="partner-name">hrs.ch</div>
+      </a>
+      <a href="https://www.buerglerag.ch/" target="_blank" rel="noopener" class="partner-card reveal reveal-delay-3">
+        <div class="partner-logo-box">
+          <img src="https://iso-met.ch/wp-content/uploads/2021/06/buergler.png" alt="Buergler AG" loading="lazy"/>
+        </div>
+        <div class="partner-name">buerglerag.ch</div>
+      </a>
+      <a href="http://www.marvit.ch/" target="_blank" rel="noopener" class="partner-card reveal reveal-delay-4">
+        <div class="partner-logo-box">
+          <img src="https://iso-met.ch/wp-content/uploads/2021/06/marvit-300x92.png" alt="Marvit" loading="lazy"/>
+        </div>
+        <div class="partner-name">marvit.ch</div>
+      </a>
+      <a href="https://www.lolaelektro.ch/" target="_blank" rel="noopener" class="partner-card reveal reveal-delay-5">
+        <div class="partner-logo-box">
+          <img src="https://iso-met.ch/wp-content/uploads/2021/06/lola-elektro-300x66.png" alt="Lola Elektro" loading="lazy"/>
+        </div>
+        <div class="partner-name">lola-elektro.ch</div>
+      </a>
+      <a href="https://www.brunnerstrubpartner.ch/" target="_blank" rel="noopener" class="partner-card reveal reveal-delay-6">
+        <div class="partner-logo-box">
+          <img src="https://iso-met.ch/wp-content/uploads/2021/06/brunner-strub-300x104.png" alt="Brunner Strub" loading="lazy"/>
+        </div>
+        <div class="partner-name">brunnerstrubpartner.ch</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-banner-inner">
+    <h2>Kostenlose Schadensanalyse anfordern</h2>
+    <p>Für eine erste, unverbindliche Schadensanalyse vereinbaren wir gerne einen Termin mit Ihnen.</p>
+    <div class="cta-btns">
+      <a href="tel:0448363646" class="btn-white">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.48 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l1.42-1.42a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        044 836 36 46
+      </a>
+      <a href="#kontakt" class="btn-ghost">Kontaktformular</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="section contact" id="kontakt">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Kontakt</div>
+      <h2 class="section-title">Nehmen Sie Kontakt auf</h2>
+      <p class="section-sub">Wir freuen uns auf Ihre Anfrage und beraten Sie gerne persönlich.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-info">
+          <h2>Wir sind für Sie da</h2>
+          <p>Kontaktieren Sie uns für eine kostenlose, unverbindliche Erstberatung. Unser Team steht Ihnen von Montag bis Freitag zur Verfügung.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="ci-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.48 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l1.42-1.42a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="ci-label">Telefon</div>
+                <div class="ci-value"><a href="tel:0448363646">044 836 36 46</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="ci-label">E-Mail</div>
+                <div class="ci-value"><a href="mailto:info@iso-met.ch">info@iso-met.ch</a></div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="ci-label">Adresse</div>
+                <div class="ci-value">Lindauerstrasse 31<br>CH-8309 Nürensdorf</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div class="ci-label">Öffnungszeiten</div>
+                <div class="ci-value">Mo – Fr: 08:00 – 17:30 Uhr</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2695.5!2d8.648!3d47.4445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799f53a7583264d%3A0x2a4ca15d4e40d222!2sLindauerstrasse%2031%2C%208309%20N%C3%BCrensdorf%2C%20Switzerland!5e0!3m2!1sde!2sch!4v1700000000000"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="ISO-MET AG Standort">
+          </iframe>
+        </div>
+      </div>
+      <div class="contact-form-wrap reveal reveal-delay-2">
+        <h3>Nachricht senden</h3>
+        <div id="theForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Vorname</label>
+              <input type="text" id="fname" placeholder="Max"/>
+            </div>
+            <div class="form-group">
+              <label for="lname">Nachname</label>
+              <input type="text" id="lname" placeholder="Mustermann"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">E-Mail-Adresse</label>
+            <input type="email" id="email" placeholder="max@example.ch"/>
+          </div>
+          <div class="form-group">
+            <label for="telefon">Telefon</label>
+            <input type="tel" id="telefon" placeholder="044 000 00 00"/>
+          </div>
+          <div class="form-group">
+            <label for="service">Dienstleistung</label>
+            <select id="service">
+              <option value="">Bitte wählen…</option>
+              <option>Fugenabdichtungen</option>
+              <option>Brandabschottung</option>
+              <option>Beton-Injektionen</option>
+              <option>Combi-Flex</option>
+              <option>Dampf- und Wasserfolien</option>
+              <option>Schimmelbekämpfung</option>
+              <option>Andere</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="nachricht">Ihre Nachricht</label>
+            <textarea id="nachricht" placeholder="Beschreiben Sie Ihr Anliegen…"></textarea>
+          </div>
+          <button class="form-submit" onclick="submitForm()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Nachricht absenden
+          </button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:block;margin:0 auto 14px"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622C17.176 19.29 21 14.591 21 9c0-.744-.073-1.47-.208-2.175z"/></svg>
+          <strong style="font-size:1.2rem;color:var(--navy)">Vielen Dank!</strong><br>
+          <span style="font-size:14px;color:var(--grey);display:block;margin-top:8px">Wir haben Ihre Nachricht erhalten und melden uns in Kürze bei Ihnen.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">ISO<span>-MET</span> AG</span>
+        <p>ISO-MET Bauabdichtungen AG – Ihr zuverlässiger Partner für Bauabdichtungen, Schimmelbekämpfung und Bautenschutz in der Schweiz.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Dienstleistungen</h4>
+        <ul>
+          <li><a href="#dienstleistungen">Fugenabdichtungen</a></li>
+          <li><a href="#dienstleistungen">Brandabschottung</a></li>
+          <li><a href="#dienstleistungen">Beton-Injektionen</a></li>
+          <li><a href="#dienstleistungen">Combi-Flex</a></li>
+          <li><a href="#dienstleistungen">Dampf- &amp; Wasserfolien</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Unternehmen</h4>
+        <ul>
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#partner">Partner</a></li>
+          <li><a href="#referenzen">Referenzen</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li>
+            <a href="tel:0448363646">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.48 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l1.42-1.42a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              044 836 36 46
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@iso-met.ch">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              info@iso-met.ch
+            </a>
+          </li>
+          <li>
+            <a href="#kontakt">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              CH-8309 Nürensdorf
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ISO-MET Bauabdichtungen AG. Alle Rechte vorbehalten.</span>
+      <div class="footer-bottom-links">
+        <a onclick="openModal('datenschutzModal')">Datenschutz</a>
+        <a onclick="openModal('impressumModal')">Impressum</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- DATENSCHUTZ MODAL -->
+<div class="modal-overlay" id="datenschutzModal" onclick="closeModalOut(event,'datenschutzModal')">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>Datenschutzerklärung</h2>
+      <button class="modal-close" onclick="closeModal('datenschutzModal')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h3>1. Verantwortliche Stelle</h3>
+      <p>ISO-MET Bauabdichtungen AG<br>Lindauerstrasse 31<br>CH-8309 Nürensdorf<br>Telefon: 044 836 36 46<br>E-Mail: info@iso-met.ch</p>
+      <h3>2. Erhebung und Verarbeitung personenbezogener Daten</h3>
+      <p>Wir erheben und verarbeiten personenbezogene Daten nur, soweit dies zur Erfüllung vertraglicher Pflichten und zur Erbringung unserer Dienstleistungen erforderlich ist. Die Daten werden ausschliesslich für die Bearbeitung Ihrer Anfragen und zur Kontaktaufnahme verwendet.</p>
+      <h3>3. Kontaktformular</h3>
+      <p>Wenn Sie uns über das Kontaktformular kontaktieren, werden Ihre Angaben (Name, E-Mail, Telefon, Nachricht) zur Bearbeitung der Anfrage und für mögliche Anschlussfragen gespeichert. Diese Daten geben wir ohne Ihre Einwilligung nicht weiter.</p>
+      <h3>4. Cookies</h3>
+      <p>Diese Website verwendet keine Tracking-Cookies. Es werden ausschliesslich technisch notwendige Cookies eingesetzt, die für den Betrieb der Website erforderlich sind.</p>
+      <h3>5. Google Maps</h3>
+      <p>Diese Website verwendet Google Maps zur Darstellung unseres Standorts. Beim Laden der Karte werden Daten an Google LLC übertragen. Weitere Informationen finden Sie in der <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--blue)">Datenschutzerklärung von Google</a>.</p>
+      <h3>6. Ihre Rechte</h3>
+      <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen Daten. Bitte wenden Sie sich dazu an uns unter info@iso-met.ch.</p>
+      <h3>7. Datensicherheit</h3>
+      <p>Wir setzen technische und organisatorische Sicherheitsmassnahmen ein, um Ihre Daten gegen zufällige oder vorsätzliche Manipulationen, Verlust, Zerstörung oder unbefugten Zugriff zu schützen.</p>
+    </div>
+  </div>
+</div>
+
+<!-- IMPRESSUM MODAL -->
+<div class="modal-overlay" id="impressumModal" onclick="closeModalOut(event,'impressumModal')">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>Impressum</h2>
+      <button class="modal-close" onclick="closeModal('impressumModal')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h3>Firmenbezeichnung</h3>
+      <p><strong>ISO-MET Bauabdichtungen AG</strong></p>
+      <h3>Adresse</h3>
+      <p>Lindauerstrasse 31<br>CH-8309 Nürensdorf<br>Schweiz</p>
+      <h3>Kontakt</h3>
+      <p>Telefon: <a href="tel:0448363646" style="color:var(--blue)">044 836 36 46</a><br>E-Mail: <a href="mailto:info@iso-met.ch" style="color:var(--blue)">info@iso-met.ch</a><br>Website: <a href="https://iso-met.ch" style="color:var(--blue)">iso-met.ch</a></p>
+      <h3>Rechtsform</h3>
+      <p>Aktiengesellschaft (AG) nach Schweizer Recht</p>
+      <h3>Handelsregister</h3>
+      <p>UID: CHE-220.143.589<br>Handelsregister des Kantons Zürich</p>
+      <h3>Tätigkeitsbereich</h3>
+      <p>Die Gesellschaft bezweckt die Ausführung von elastischen Bau- und Fugenabdichtungen aller Art, Brandabschottungen, Beton-Injektionen, Combi-Flex-Abdichtungen, Isolationen und Kernbohrungen.</p>
+      <h3>Haftungsausschluss</h3>
+      <p>Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschliesslich deren Betreiber verantwortlich.</p>
+      <h3>Urheberrecht</h3>
+      <p>Die auf dieser Website veröffentlichten Inhalte unterliegen dem Schweizer Urheberrecht. Jede vom Urheberrecht nicht zugelassene Verwertung bedarf der vorherigen schriftlichen Zustimmung der ISO-MET Bauabdichtungen AG.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Loader
+window.addEventListener('load',()=>{setTimeout(()=>{document.getElementById('loader').classList.add('hidden')},1700)});
+
+// Mobile Menu
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>20)
+});
+
+// Scroll Reveal
+const revealEls=document.querySelectorAll('.reveal');
+const revealObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})
+},{threshold:.1});
+revealEls.forEach(el=>revealObs.observe(el));
+
+// Counting Numbers
+function animateCount(el,target,suffix){
+  const dur=1800;const step=16;const inc=target/(dur/step);let cur=0;
+  suffix=suffix||'';
+  const timer=setInterval(()=>{
+    cur+=inc;if(cur>=target){cur=target;clearInterval(timer)}
+    el.textContent=Math.floor(cur)+(suffix);
+  },step);
+}
+const countEls=document.querySelectorAll('.num[data-count]');
+const countObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el=e.target;const target=parseInt(el.dataset.count);
+      const suffix=el.nextElementSibling&&el.nextElementSibling.textContent.includes('%')?'':
+                   (target===10?'+':target===500?'+':'%');
+      animateCount(el,target,target===10?'+':target===500?'+':'');
+      countObs.unobserve(el);
+    }
+  })
+},{threshold:.5});
+countEls.forEach(el=>countObs.observe(el));
+
+// Showcase Tabs
+let autoTimer=null;let currentTab=0;const totalTabs=5;
+function switchTab(i){
+  document.querySelectorAll('.stab').forEach((b,j)=>b.classList.toggle('active',i===j));
+  document.querySelectorAll('.showcase-panel').forEach((p,j)=>p.classList.toggle('active',i===j));
+  currentTab=i;
+  resetProgress();
+}
+function resetProgress(){
+  const pf=document.getElementById('progressFill');
+  if(!pf)return;
+  pf.style.animation='none';
+  void pf.offsetWidth;
+  pf.style.animation='progressAnim 5s linear infinite';
+}
+function nextTab(){currentTab=(currentTab+1)%totalTabs;switchTab(currentTab)}
+autoTimer=setInterval(nextTab,5000);
+document.querySelector('.showcase-inner').addEventListener('mouseenter',()=>clearInterval(autoTimer));
+document.querySelector('.showcase-inner').addEventListener('mouseleave',()=>{autoTimer=setInterval(nextTab,5000)});
+
+// Form Submit
+function submitForm(){
+  const fname=document.getElementById('fname').value;
+  const email=document.getElementById('email').value;
+  if(!fname||!email){alert('Bitte füllen Sie mindestens Ihren Namen und Ihre E-Mail-Adresse aus.');return}
+  document.getElementById('theForm').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+}
+
+// Modals
+function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden'}
+function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow=''}
+function closeModalOut(e,id){if(e.target===document.getElementById(id))closeModal(id)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'));document.body.style.overflow=''}});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+</script>
+</body>
+</html>
